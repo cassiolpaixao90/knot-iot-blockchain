@@ -51,7 +51,7 @@ export class WaterFlowModel {
         return this._waterFlowModel.ownerId.toString();
     }
 
-    getClientProductModel() {
+    getClientWaterFlowModel() {
         return Object.seal({
             id: (this._waterFlowModel.id).toString(),
             shipping: this._waterFlowModel.shipping,

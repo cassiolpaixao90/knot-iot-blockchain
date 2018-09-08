@@ -2,7 +2,7 @@ import { IWaterFlowDocument } from "../data-abstracts/repositories/IWaterFlowDoc
 import { WaterFlowRepo } from "../data-abstracts/repositories/WatterFlowRepository";
 import * as mongoose from 'mongoose';
 
-export class ProductDataAgent {
+export class WaterFlowDataAgent {
     constructor() { }
 
     async createNewWaterFlow(waterFlow: any): Promise<any> {
