@@ -19,14 +19,17 @@ import { IWaterFlowResponse } from '../responses/IWaterFlowResponse';
 import { WaterFlowModel } from '../../data-layer/models/WaterFlowModel';
 import { MyMiddleware } from '../../middleware/middleware/custom-middleware/MyMiddleWare';
 import { Request } from 'express-serve-static-core';
+import {  KnotAccess } from '../../data-layer/adapters/KnotAccess'
 
 @JsonController('/waterflow')
 @UseBefore(MyMiddleware)
 export class WaterFlowController {
 
     private waterFlowDataAgent: WaterFlowDataAgent;
+    private knotAccess: KnotAccess;
     constructor() {
         this.waterFlowDataAgent = new WaterFlowDataAgent();
+        this.knotAccess = KnotAccess.getInstance();
     }
     /*
      API 1: get all listing
