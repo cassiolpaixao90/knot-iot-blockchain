@@ -1,4 +1,16 @@
-import { Controller, Get, JsonController, Post, Put, Param, Delete, Body, OnUndefined, UseBefore, Req, Res } from 'routing-controllers';
+import { Controller, 
+         Get,
+         JsonController, 
+         Post, 
+         Put, 
+         Param, 
+         Delete, 
+         Body, 
+         OnUndefined, 
+         UseBefore, 
+         Req, 
+         Res 
+        } from 'routing-controllers';
 import { validateWaterFlowRequest } from '../../business-layer/validator/WaterFlowValidationProcessor';
 import { IWaterFlowCreateRequest } from '../request/IWaterFlowRequest';
 import { logger } from '../../middleware/common/Logging';
@@ -19,6 +31,13 @@ export class WaterFlowController {
     /*
      API 1: get all listing
     */
+
+//    iotRouter.post('/register', iotController.register);
+//    iotRouter.get('/search/:address', iotController.search);
+
+//    @Post('/register')
+//    async register
+
     @Get('/waterflow-listing')
     async getWaterFlowList(): Promise<any> {
         return { "msg": "This is first Typescript Microservice" };

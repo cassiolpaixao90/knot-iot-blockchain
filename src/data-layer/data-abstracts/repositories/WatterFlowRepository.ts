@@ -7,4 +7,3 @@ import { WaterFlowSchema } from "./WaterFlowSchema";
 export type WaterFlowMod = Model<IWaterFlowDocument>;
 
 export const WaterFlowRepo: WaterFlowMod = MongooseAccess.mongooseConnection.model<IWaterFlowDocument>("waterflow", WaterFlowSchema);
-

@@ -22,6 +22,7 @@ export class ExpressConfig {
     this.app.use(helmet());
     this.app.use(this.clientErrorHandler)
     this.setUpControllers();
+   
   }
 
   setUpControllers() {

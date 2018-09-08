@@ -1,27 +1,31 @@
 import { logger } from '../common/Logging'
 import { ExpressConfig } from './Express';
 import * as config from 'config';
+import { KnotAccess } from '../../../data-layer/adapters/KnotAccess'
 
 export class Application {
 
   server: any;
   express: ExpressConfig;
-
+  knotAccess: KnotAccess;
+  
   constructor() {
     this.express = new ExpressConfig();
-
+    this.knotAccess = new KnotAccess();
+    logger.info("knotAccess", this.knotAccess);
+    
     const port = config.get('express.port');
-    const debugPort = config.get('express.debug');
-
+    const debugPort = config.get('express.debug');  
+    
     this.server = this.express.app.listen(port, () => {
       logger.info(`
       --------------------------------------------------
-       Server Started! Express: http://localhost:${port}
-       Health : http://localhost:${port}/ping
-       Debugger: http:/${this.server.address()}:${port}/?ws=${this.server.address()}:${port}&port=${debugPort}
+      Server Started! Express: http://localhost:${port}
+      Health : http://localhost:${port}/ping
       ------------------------------------------------------
       `)
     });
+
   }
 
 }
