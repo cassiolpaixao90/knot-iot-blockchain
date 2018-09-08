@@ -1,6 +1,6 @@
 import { logger } from '../common/Logging'
 import { ExpressConfig } from './Express';
-import settings from '../../../settings/environment/Index'
+import * as config from 'config'
 
 export class Application {
 
@@ -10,7 +10,8 @@ export class Application {
   constructor() {
     this.express = new ExpressConfig();
 
-    const { port } = settings.server;
+    const port = config.get('express.port');
+    const debugPort = config.get('express.debug');
 
     this.server = this.express.app.listen(port, () => {
       logger.info(`

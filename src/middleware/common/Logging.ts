@@ -1,10 +1,9 @@
 import * as winston from 'winston'
-import settings from '../../../settings/environment/Index'
+import * as config from 'config'
 
 export const logger = new winston.Logger()
 
-const env = settings.envNode
-
+const env = config.util.getEnv('NODE_ENV');
 /**
  * @description save logger in mode dev
  */
