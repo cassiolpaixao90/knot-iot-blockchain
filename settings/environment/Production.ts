@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = {
     server: {
         host: process.env.HOST || '0.0.0.0',
