@@ -8,6 +8,8 @@ import * as health from 'express-ping';
 import * as helmet from 'helmet';
 import { Request, Response } from 'express';
 import { Container } from "typedi";
+import { tracer } from '../../middleware/config/ZipkinConfig';
+import { expressMiddleware as zipkinMiddleware } from 'zipkin-instrumentation-express';
 
 
 export class ExpressConfig {
@@ -22,6 +24,8 @@ export class ExpressConfig {
     this.app.use(helmet());
     this.app.use(this.clientErrorHandler)
     this.setUpControllers();
+    this.setupZipkinServer();
+
   }
 
   setUpControllers() {
@@ -37,6 +41,10 @@ export class ExpressConfig {
     if (err.hasOwnProperty('thrown')) {
       res.status(err["status"]).send({ error: err.message });
     }
+  }
+
+  setupZipkinServer() {
+    this.app.use(zipkinMiddleware({ tracer, serviceName: 'waterflow-service' }))
   }
 
 }

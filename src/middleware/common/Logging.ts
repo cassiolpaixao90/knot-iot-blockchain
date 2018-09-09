@@ -1,12 +1,10 @@
-import * as winston from 'winston'
-import * as config from 'config'
+import * as winston from 'winston';
 
-export const logger = new winston.Logger()
+export const logger = new winston.Logger();
 
-const env = config.util.getEnv('NODE_ENV');
-/**
- * @description save logger in mode dev
- */
+const env = 'development';
+
+// Development Logger
 if (env === 'development') {
   logger.add(winston.transports.Console, {
     type: 'verbose',
@@ -14,9 +12,9 @@ if (env === 'development') {
     prettyPrint: true,
     handleExceptions: true,
     humanReadableUnhandledException: true
-  })
+  });
 }
 
 process.on('unhandledRejection', function (reason, p) {
-  logger.warn('Possibly Unhandled Rejection at: Promise ', p, ' reason: ', reason)
-})
+  logger.warn('system level exceptions at, Possibly Unhandled Rejection at: Promise ', p, ' reason: ', reason);
+});

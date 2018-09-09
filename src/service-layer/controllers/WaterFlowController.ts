@@ -1,24 +1,28 @@
-import { Controller, 
-         Get,
-         JsonController, 
-         Post, 
-         Put, 
-         Param, 
-         Delete, 
-         Body, 
-         OnUndefined, 
-         UseBefore, 
-         Req, 
-         Res 
-        } from 'routing-controllers';
+import {
+    Controller,
+    Get,
+    JsonController,
+    Post,
+    Put,
+    Param,
+    Delete,
+    Body,
+    OnUndefined,
+    UseBefore,
+    Req,
+    Res
+} from 'routing-controllers';
 import { validateWaterFlowRequest } from '../../business-layer/validator/WaterFlowValidationProcessor';
 import { IWaterFlowCreateRequest } from '../request/IWaterFlowRequest';
 import { logger } from '../../middleware/common/Logging';
 import { WaterFlowDataAgent } from '../../data-layer/data-agents/WaterFlowDataAgent';
 import { IWaterFlowResponse } from '../responses/IWaterFlowResponse';
 import { WaterFlowModel } from '../../data-layer/models/WaterFlowModel';
-import { MyMiddleware } from '../../middleware/middleware/custom-middleware/MyMiddleWare';
+import { MyMiddleware } from '../../middleware/custom-middleware/MyMiddleWare';
 import { Request } from 'express-serve-static-core';
+import * as fetch from 'node-fetch';
+import * as wrapFetch from 'zipkin-instrumentation-fetch';
+import { tracer } from '../../middleware/config/ZipkinConfig';
 // import {  KnotAccess } from '../../data-layer/adapters/KnotAccess'
 
 @JsonController('/waterflow')
@@ -26,23 +30,30 @@ import { Request } from 'express-serve-static-core';
 export class WaterFlowController {
 
     private waterFlowDataAgent: WaterFlowDataAgent;
+    private zipkinFetch: any;
     // private knotAccess: KnotAccess;
     constructor() {
         this.waterFlowDataAgent = new WaterFlowDataAgent();
+        this.zipkinFetch = wrapFetch(fetch, {
+            tracer,
+            serviceName: 'waterflow-service'
+        });
         // this.knotAccess = KnotAccess.getInstance();
     }
     /*
      API 1: get all listing
     */
 
-//    iotRouter.post('/register', iotController.register);
-//    iotRouter.get('/search/:address', iotController.search);
+    //    iotRouter.post('/register', iotController.register);
+    //    iotRouter.get('/search/:address', iotController.search);
 
-//    @Post('/register')
-//    async register
+    //    @Post('/register')
+    //    async register
 
     @Get('/waterflow-listing')
     async getWaterFlowList(): Promise<any> {
+        let userRes = await this.zipkinFetch('http://localhost:3000/users/user-by-id/parthghiya');
+        console.log("user-res", userRes.text());
         return { "msg": "This is first Typescript Microservice" };
     }
 
