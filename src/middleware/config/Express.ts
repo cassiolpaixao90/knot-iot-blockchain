@@ -10,12 +10,15 @@ import { Request, Response } from 'express';
 import { Container } from "typedi";
 import { tracer } from '../../middleware/config/ZipkinConfig';
 import { expressMiddleware as zipkinMiddleware } from 'zipkin-instrumentation-express';
+import { secureApp } from './Security';
+import { configHystrix } from './Hystrix'
 
 
 export class ExpressConfig {
   app: express.Express;
   constructor() {
     this.app = express();
+    // secureApp(this.app);
     this.app.use(cors());
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
@@ -25,6 +28,7 @@ export class ExpressConfig {
     this.app.use(this.clientErrorHandler)
     this.setUpControllers();
     this.setupZipkinServer();
+    configHystrix();
 
   }
 

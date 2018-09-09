@@ -8,6 +8,8 @@ import * as csrf from 'csurf';
  */
 export const secureApp = (app: express.Application) => {
 
+    console.log("configuration of security app");
+    
     app.use(helmet());
     app.use(csrf({ cookie: true }));
     app.use((req: any, res, next) => {
