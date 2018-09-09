@@ -1,5 +1,5 @@
-import { IWaterFlowDocument } from "../data-abstracts/repositories/IWaterFlowDocument";
-import { WaterFlowRepo } from "../data-abstracts/repositories/WatterFlowRepository";
+import { IWaterFlowDocument } from "../data-abstracts/repositories/index";
+import { WaterFlowRepo } from "../data-abstracts/repositories/waterflow/WatterFlowRepository";
 import * as mongoose from 'mongoose';
 
 export class WaterFlowDataAgent {

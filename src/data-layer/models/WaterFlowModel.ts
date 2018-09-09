@@ -1,4 +1,4 @@
-import { IWaterFlowDocument } from "../data-abstracts/repositories/IWaterFlowDocument";
+import { IWaterFlowDocument } from "../data-abstracts/repositories/index";
 
 /**
  * @description  here we will have getters and setters of waterFlowModel
