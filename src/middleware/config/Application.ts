@@ -1,30 +1,45 @@
 import { logger } from '../common/Logging'
 import { ExpressConfig } from './Express';
 import * as config from 'config'
-// import { KnotAccess } from '../../data-layer/adapters/KnotAccess'
+import { KnotAccess } from '../../data-layer/data-agents/KnotDataAgent'
+import { KnotModel } from '../../data-layer/models/KnotModel'
+import { start } from './Knot';
 
 export class Application {
 
   server: any;
   express: ExpressConfig;
-  // knotAccess: KnotAccess;
- 
+
+  knotAccess: KnotAccess;
+  knotModel: KnotModel;
+  
 
   constructor() {
     this.express = new ExpressConfig();
-    // this.knotAccess = KnotAccess.getInstance();
     
-    // this.knotAccess.connect();
+    const http = require("http").Server(this.express.app);
+    // const io = require('socket.io')(http);
+
+    
+    // const { server, porta, uuid, token } = config.get('meshblu')
+    // const url = `${server}:${porta}`
+    // this.knotAccess = new KnotAccess(uuid, token, io, url);
+
+
     const port = config.get('express.port');
     const debugPort = config.get('express.debug');
+    
+    start();
 
-    this.server = this.express.app.listen(port, () => {
+    this.server = http.listen(port, () => {
       logger.info(`
       --------------------------------------------------
-       Server Started! Express: http://localhost:${port}
-       Health : http://localhost:${port}/ping
+      Server Started! Express: http://localhost:${port}
+      Health : http://localhost:${port}/ping
+      Starting KNoT cloud client...
       ------------------------------------------------------
       `)
+      // this.knotAccess.start();
     });
   }
 

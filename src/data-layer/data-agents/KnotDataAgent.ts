@@ -18,8 +18,8 @@ export class KnotAccess {
     private waterFlow: any;
     private costUtils: CostUtils;
 
-    constructor(uuid, token, io) {
-        this.url = `${process.env.KNOT_HOST}:${process.env.KNOT_PORT}`;
+    constructor(uuid, token, io, url) {
+        this.url = url;
         this.uuid = uuid;
         this.token = token;
         this.io = io;

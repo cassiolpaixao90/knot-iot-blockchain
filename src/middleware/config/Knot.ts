@@ -3,11 +3,11 @@ const KNoTCloud = require('knot-cloud');
 const cloud = new KNoTCloud(
     'knot-test.cesar.org.br',
     3000,
-    'fbd2f4b2-1ef9-41fe-9456-a42550d90000',
-    '042ffc190cbeb4e77176eff4f7064ad74f6844dc'
+    'fdf6cbee-1a70-4099-8285-1e300a8a0000',
+    '1c698e0cb986d279855ff7653428fe83c8b39cac'
 );
 
-async function main() {
+async function start() {
     try {
         await cloud.connect();
         const devices = await cloud.getDevices();
@@ -18,4 +18,5 @@ async function main() {
 
     await cloud.close();
 }
-export { main }
+
+export { start }

@@ -9,7 +9,7 @@ export class KnotModel {
 
     constructor() {
         this._server = config.get('meshblu.server');
-        this._server = config.get('meshblu.port');
+        this._port = config.get('meshblu.port');
         this._uuid = config.get('meshblu.uuid');
         this._token = config.get('meshblu.token');
     }
@@ -23,11 +23,11 @@ export class KnotModel {
     }
 
     get uuid(): string {
-        return this.uuid.toString();
+        return this._uuid.toString();
     }
 
     get token(): any {
-        return this.token.toString();
+        return this._token.toString();
     }
 
 

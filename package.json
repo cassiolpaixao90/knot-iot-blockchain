@@ -20,16 +20,18 @@
     "helmet": "^3.12.0",
     "is-base64": "0.0.6",
     "meshblu": "^1.34.1",
+    "moment-timezone": "0.5.21",
     "mongoose": "^5.0.13",
     "reflect-metadata": "^0.1.10",
     "request": "^2.88.0",
     "rimraf": "^2.6.2",
     "routing-controllers": "^0.7.6",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "2.1.1",
     "typedi": "^0.7.2",
     "typescript": "^3.0.3",
     "winston": "^2.4.0",
-    "socket.io-client": "2.1.1",
-    "moment-timezone": "0.5.21"
+    "knot-cloud": "git+https://github.com/cassiolpaixao90/knot-lib-node.git"
   },
   "devDependencies": {
     "@types/cors": "^2.8.3",
