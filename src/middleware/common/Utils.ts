@@ -1,6 +1,6 @@
 'use strict';
 
-export class CostUtils {
+export class WaterFlowUtils {
 
     private valorLitro: any;
     constructor() {
@@ -14,5 +14,9 @@ export class CostUtils {
     calculateCost(liters) {
         return liters * this.valorLitro;
     }
+
+    randomInRange(min, max) {
+        return Math.random() < 0.5 ? ((1 - Math.random()) * (max - min) + min) : (Math.random() * (max - min) + min);
+    };
 }
 

@@ -7,6 +7,7 @@ import { KnotModel } from '../../data-layer/models/KnotModel'
 import * as spdy from 'spdy';
 import * as path from 'path';
 import * as fs from 'fs';
+import { KnotSocket } from './Socket'
 
 export class Application {
 
@@ -15,10 +16,11 @@ export class Application {
 
   knotAccess: KnotAccess;
   knotModel: KnotModel;
-
+  knotSocket: KnotSocket;
 
   constructor() {
     this.express = new ExpressConfig();
+    
 
     const certsPath = path.resolve('certs');
     const options = {
@@ -26,24 +28,12 @@ export class Application {
       cert: fs.readFileSync(certsPath + "/server.crt")
     }
 
-
-    const http = require("http").Server(this.express.app);
-    const io = require('socket.io')(http);
-
-
-    const { server, porta, uuid, token } = config.get('meshblu')
-    const url = `${server}:${porta}`
-    this.knotAccess = new KnotAccess(uuid, token, io, url);
-
-
     const port = config.get('express.port');
     const debugPort = config.get('express.debug');
 
-    // start();
-
     this.server = spdy.createServer(options, this.express.app)
       .listen(port, (error: any) => {
-        
+
         if (error) {
           logger.error("failed to start server with ssl", error);
           return process.exit(1);
@@ -55,8 +45,10 @@ export class Application {
       Starting KNoT cloud client...
       ------------------------------------------------------
       `)
-        this.knotAccess.start();
+        // this.knotAccess.start();
       });
+
+      new KnotSocket();
   }
 
 }

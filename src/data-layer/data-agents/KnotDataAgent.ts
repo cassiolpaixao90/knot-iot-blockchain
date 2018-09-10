@@ -5,7 +5,7 @@ import { IDeviceDocument, DeviceMod, IWaterFlowDocument, WaterFlowRepo } from ".
 import * as mongoose from 'mongoose';
 import { logger } from '../../middleware/common/Logging';
 import { DeviceRepo } from '../data-abstracts/repositories/devices/DeviceRepository';
-import { CostUtils } from '../../middleware/common/Utils';
+import { WaterFlowUtils } from '../../middleware/common/Utils';
 
 export class KnotAccess {
 
@@ -16,7 +16,7 @@ export class KnotAccess {
     private sockets: any;
     private socket: any;
     private waterFlow: any;
-    private costUtils: CostUtils;
+    private waterFlowUtils: WaterFlowUtils;
 
     constructor(uuid, token, io, url) {
         this.url = url;
@@ -24,7 +24,7 @@ export class KnotAccess {
         this.token = token;
         this.io = io;
         this.sockets = {};
-        this.costUtils = new CostUtils();
+        this.waterFlowUtils = new WaterFlowUtils();
     }
 
     start() {
@@ -75,7 +75,7 @@ export class KnotAccess {
 
         const device = await DeviceRepo.findById(uuid).lean();
         const liters = total.flowRate / 60;
-        const cost = this.costUtils.calculateCost(liters);
+        const cost = this.waterFlowUtils.calculateCost(liters);
         logger.info('UUID:', uuid, 'Total (L):', liters, 'Cost:', cost);
         if (device && this.sockets[device.owner]) {
             this.io.sockets.connected[this.sockets[device.owner]].emit('message', { device: uuid, flowRate, liters, cost });
