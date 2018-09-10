@@ -81,14 +81,14 @@ export class WaterFlowController {
                 data: validationErrors
             }
         }
-        let result = await this.waterFlowDataAgent.createNewWaterFlow(request);
-        if (result.id) {
-            let newWaterFlow = new WaterFlowModel(result);
-            let newWaterFlowResult = Object.assign({ newWaterFlow: newWaterFlow.getClientWaterFlowModel() });
-            return res.json(<IWaterFlowResponse>(newWaterFlowResult));
-        } else {
-            throw result;
-        }
+        // let result = await this.waterFlowDataAgent.createNewWaterFlow(request);
+        // if (result.id) {
+        //     let newWaterFlow = new WaterFlowModel(result);
+        //     let newWaterFlowResult = Object.assign({ newWaterFlow: newWaterFlow.getClientWaterFlowModel() });
+        //     return res.json(<IWaterFlowResponse>(newWaterFlowResult));
+        // } else {
+        //     throw result;
+        // }
     }
 
     /*

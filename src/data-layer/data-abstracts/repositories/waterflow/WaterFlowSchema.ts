@@ -8,78 +8,17 @@ import { IWaterFlowDocument } from "./IWaterFlowDocument";
  * @private
  */
 let WaterFlowSchema: Schema = new Schema({
-    name: {
+    flowRate: {
         type: String,
         required: true,
-        index: { unique: true, dropDups: true }
+        unique: false
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    lastUpdated: {
-        type: Date,
-        default: Date.now
-    },
-    ownerId: {
+    uuid: {
         type: String,
-        required: true
-    },
-    feedbackEmail: {
-        type: String,
-        required: true
-    }, description: {
-        type: String,
-        required: true
-    }, category: {
-        type: String,
-        required: true
-    }, brand: {
-        id: {
-            type: Number
-        }, name: {
-            type: String
-        }
-    }, desc: [{
-        _id: false,
-        lang: {
-            type: String
-        }, val: {
-            type: String
-        }
-    }], shipping: {
-        dimensions: {
-            height: {
-                type: Number
-            }, length: {
-                type: Number
-            }, width: {
-                type: Number
-            }
-        }, weight: {
-            type: Number
-        }
-    }, attrs: [{
-        _id: false,
-        name: {
-            type: String
-        }, value: {
-            type: String
-        }
-    }]
-})
-
-WaterFlowSchema.pre("save", (next: any) => {
-    if (this._doc) {
-        let doc = <IWaterFlowDocument>this._doc;
-        let now = new Date();
-
-        if (!doc.createdAt) {
-            doc.createdAt = now;
-        }
-        doc.lastUpdated = now;
+        required: true,
+        ref: 'Device'
     }
-    next();
-})
+});
+ 
 
 export { WaterFlowSchema };
