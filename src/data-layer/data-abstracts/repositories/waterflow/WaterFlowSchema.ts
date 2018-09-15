@@ -1,6 +1,4 @@
 import { Schema } from "mongoose";
-import { MongooseAccess } from "../../../adapters/MongoAccess";
-import { IWaterFlowDocument } from "./IWaterFlowDocument";
 
 /**
  * MongooseSchema

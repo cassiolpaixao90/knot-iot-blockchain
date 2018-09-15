@@ -1,5 +1,5 @@
 
-import { Model, model } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseAccess } from "../../../adapters/MongoAccess";
 import { IUserDocument } from "./IUserDocument";
 import { UserSchema } from "./UserSchema";
