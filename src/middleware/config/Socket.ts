@@ -40,7 +40,7 @@ export class KnotSocket {
         console.log('sent flow rate:', flowRate);
 
         socket.on('message', data => {
-          this.waterFlowDataAgent.createNewWaterFlow(data);
+          // this.waterFlowDataAgent.createNewWaterFlow(data);
         });
       }, 1000);
     });

@@ -5,6 +5,7 @@ export class MyMiddleware implements ExpressMiddlewareInterface { // interface i
     constructor(){}
     use(request: any, response: any, next?: (err?: any) => any): any {
         console.log("custom middleware gets called.");
+        console.log("request", request)
         next();
     }
 

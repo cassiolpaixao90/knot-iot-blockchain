@@ -1,8 +1,7 @@
 import moment from 'moment-timezone';
-import { IDeviceDocument, DeviceMod, IWaterFlowDocument, WaterFlowRepo } from "../data-abstracts/repositories/index";
+import { IDeviceDocument, DeviceRepo, IWaterFlowDocument, WaterFlowRepo } from "../data-abstracts/repositories/index";
 import * as mongoose from 'mongoose';
 import { logger } from '../../middleware/common/Logging';
-import { DeviceRepo } from '../data-abstracts/repositories/devices/DeviceRepository';
 import { WaterFlowUtils } from '../../middleware/common/Utils';
 export class WaterFlowDataAgent {
     
