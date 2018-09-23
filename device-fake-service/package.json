@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run clean && npm run build && node ./dist/Index.js",
+    "start": "npm run clean && npm run build && node ./dist/index.js",
     "clean": "node ./node_modules/rimraf/bin.js dist",
     "build": "node ./node_modules/typescript/bin/tsc"
   },
@@ -35,7 +35,8 @@
     "spdy": "^3.4.7",
     "typedi": "^0.7.2",
     "typescript": "^3.0.3",
-    "winston": "^2.4.0"
+    "winston": "^2.4.0",
+    "eureka-js-client": "latest"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.8",
