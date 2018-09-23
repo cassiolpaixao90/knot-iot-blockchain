@@ -4,13 +4,14 @@ import * as config from 'config';
 import * as spdy from 'spdy';
 import * as path from 'path';
 import * as fs from 'fs';
-// import {KnotSocket} from './Socket'
+import {KnotSocket} from './SocketIO'
 
 export class Application {
 
   server: any;
   express: ExpressConfig;
-  // knotSocket: KnotSocket;
+
+  knotSocket: KnotSocket;
 
   constructor() {
     this.express = new ExpressConfig();
@@ -38,7 +39,7 @@ export class Application {
       `)
       });
 
-    // new KnotSocket();
+    new KnotSocket();
   }
 
 }

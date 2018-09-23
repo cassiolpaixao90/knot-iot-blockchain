@@ -1,18 +1,18 @@
 import {logger} from '../../middleware/common/Logging';
-// import {WaterFlowUtils} from '../../middleware/common/Utils';
+import {WaterFlowUtils} from '../../middleware/common/Utils';
 // import {WaterFlowDataAgent} from '../../data-layer/data-agents/WaterFlowDataAgent';
 
 
 export class KnotSocket {
 
   waterFlowUtils: WaterFlowUtils;
-  waterFlowDataAgent: WaterFlowDataAgent;
+  // waterFlowDataAgent: WaterFlowDataAgent;
 
 
   constructor() {
 
     this.waterFlowUtils = new WaterFlowUtils();
-    this.waterFlowDataAgent = new WaterFlowDataAgent();
+    // this.waterFlowDataAgent = new WaterFlowDataAgent();
 
     const url = `http://knot-test.cesar.org.br:3000`;
     const socket = require('socket.io-client')(url);
