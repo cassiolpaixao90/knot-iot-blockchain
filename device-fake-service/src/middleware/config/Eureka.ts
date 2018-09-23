@@ -1,13 +1,19 @@
-import { Eureka } from 'eureka-js-client';
+import {Eureka} from 'eureka-js-client';
 
-export class EurekaBuilder {
+export class EurekaService {
 
-  constructor(){
-      let eureka = new Eureka(
+  private static _client: Eureka;
+
+  constructor() {
+  }
+
+  static builder(): Eureka {
+    if (!this._client) {
+      this._client = new Eureka(
         {
           instance: {
-            instanceId: 'hello-world-chapter-6',
-            app: 'hello-world-chapter-6',
+            instanceId: 'device-fake-service',
+            app: 'device-fake-service',
             hostName: 'localhost',
             ipAddr: '127.0.0.1',
             statusPageUrl: `http://localhost:${9090}`,
@@ -16,7 +22,7 @@ export class EurekaBuilder {
               '$': 9090,
               '@enabled': true,
             },
-            vipAddress: 'hello-world-chapter-6',
+            vipAddress: 'device-fake-service',
             dataCenterInfo: {
               '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
               'name': 'MyOwn',
@@ -28,9 +34,8 @@ export class EurekaBuilder {
             servicePath: '/eureka/apps/',
           }
         });
-
-        eureka.start();
+    }
+    return this._client;
   }
-
- 
 }
+

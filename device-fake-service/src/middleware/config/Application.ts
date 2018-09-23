@@ -5,6 +5,7 @@ import * as spdy from 'spdy';
 import * as path from 'path';
 import * as fs from 'fs';
 import {KnotSocket} from './SocketIO'
+import {EurekaService} from "./Eureka";
 
 export class Application {
 
@@ -40,6 +41,16 @@ export class Application {
       });
 
     new KnotSocket();
+    EurekaService.builder().start();
+    process.on('SIGINT', () => {
+      logger.info(`
+      -------------------------------------------------- 
+      Stopping KNoT cloud client...
+      ------------------------------------------------------
+      `);
+      EurekaService.builder().stop();
+      this.server.close()
+    });
   }
 
 }
