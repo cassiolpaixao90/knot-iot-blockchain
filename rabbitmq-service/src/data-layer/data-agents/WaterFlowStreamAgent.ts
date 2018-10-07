@@ -1,0 +1,18 @@
+import WaterflowPub from "middleware/common/WaterflowPub";
+
+export class WaterFlowDataAgent {
+  private waterflowPub: WaterflowPub;
+  private waterFlow: any;
+
+  constructor() {
+    this.waterflowPub = new WaterflowPub();
+  }
+
+  async createNewWaterFlow(data: any) {
+    this.waterFlow = {
+      uuid: data.fromUuid,
+      flowRate: data.message.flowRate
+    };
+    this.waterflowPub.publish(this.waterFlow);
+  }
+}
