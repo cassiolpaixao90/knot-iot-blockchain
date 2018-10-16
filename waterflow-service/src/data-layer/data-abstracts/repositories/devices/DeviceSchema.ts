@@ -1,4 +1,4 @@
-import { Schema } from "mongoose"; 
+import { Schema } from "mongoose";
 
 /**
  * MongooseSchema
@@ -6,20 +6,18 @@ import { Schema } from "mongoose";
  * @private
  */
 let DeviceSchema: Schema = new Schema({
-    _id: {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    owner: {
-        type: String,
-        required: true,
-        ref: 'User',
-        index: true
-    }
-})
- 
+  name: {
+    type: String,
+    required: true
+  },
+  owner: {
+    type: String,
+    required: false
+  },
+  anomalia: {
+    type: Boolean
+  },
+  at_date: new Date()
+});
+
 export { DeviceSchema };

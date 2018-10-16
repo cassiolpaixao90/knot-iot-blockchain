@@ -6,17 +6,15 @@ import { Schema } from "mongoose";
  * @private
  */
 let WaterFlowSchema: Schema = new Schema({
-    flowRate: {
-        type: String,
-        required: true,
-        unique: false
-    },
-    uuid: {
-        type: String,
-        required: true,
-        ref: 'Device'
-    }
+  flowRate: {
+    type: String,
+    required: false,
+    unique: false
+  },
+  uuid: {
+    type: String,
+    required: false
+  }
 });
- 
 
 export { WaterFlowSchema };

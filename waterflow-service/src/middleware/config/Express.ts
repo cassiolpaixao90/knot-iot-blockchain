@@ -1,39 +1,26 @@
-import * as express from 'express';
-import * as cors from 'cors';
-import * as bodyParser from 'body-parser';
-import * as cookieParser from 'cookie-parser';
-import { useExpressServer, useContainer } from 'routing-controllers';
-import * as path from 'path';
-import * as health from 'express-ping';
-import * as helmet from 'helmet';
-import { Request, Response } from 'express';
+import * as express from "express";
+import * as cors from "cors";
+import * as bodyParser from "body-parser";
+import * as cookieParser from "cookie-parser";
+import { useExpressServer, useContainer } from "routing-controllers";
+import * as path from "path";
+import { Request, Response } from "express";
 import { Container } from "typedi";
-import { tracer } from '../../middleware/config/ZipkinConfig';
-import { expressMiddleware as zipkinMiddleware } from 'zipkin-instrumentation-express';
-import { secureApp } from './Security';
-import { configHystrix } from './Hystrix'
-
 
 export class ExpressConfig {
   app: express.Express;
   constructor() {
     this.app = express();
-    // secureApp(this.app);
     this.app.use(cors());
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());
-    this.app.use(health.ping());
-    this.app.use(helmet());
-    this.app.use(this.clientErrorHandler)
+    this.app.use(this.clientErrorHandler);
     this.setUpControllers();
-    this.setupZipkinServer();
-    configHystrix();
-
   }
 
   setUpControllers() {
-    const controllersPath = path.resolve('dist', 'service-layer/controllers');
+    const controllersPath = path.resolve("dist", "service-layer/controllers");
     useContainer(Container);
     useExpressServer(this.app, {
       controllers: [controllersPath + "/*.js"],
@@ -41,14 +28,14 @@ export class ExpressConfig {
     });
   }
 
-  clientErrorHandler(err: any, req: Request, res: Response, next: Function): void {
-    if (err.hasOwnProperty('thrown')) {
+  clientErrorHandler(
+    err: any,
+    req: Request,
+    res: Response,
+    next: Function
+  ): void {
+    if (err.hasOwnProperty("thrown")) {
       res.status(err["status"]).send({ error: err.message });
     }
   }
-
-  setupZipkinServer() {
-    this.app.use(zipkinMiddleware({ tracer, serviceName: 'waterflow-service' }))
-  }
-
 }

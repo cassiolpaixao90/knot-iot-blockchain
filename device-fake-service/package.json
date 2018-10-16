@@ -31,6 +31,7 @@
     "opossum": "^1.7.1",
     "reflect-metadata": "^0.1.10",
     "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "rimraf": "^2.6.2",
     "routing-controllers": "^0.7.6",
     "socket.io": "^2.1.1",

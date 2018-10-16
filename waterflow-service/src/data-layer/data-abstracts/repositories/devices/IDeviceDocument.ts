@@ -1,7 +1,7 @@
-import mongoose = require('mongoose');
+import mongoose = require("mongoose");
 
 export interface IDeviceDocument extends mongoose.Document {
-    id: string,
-    name: string,
-    owner: string
+  name: string;
+  owner: string;
+  anamolia: boolean;
 }
