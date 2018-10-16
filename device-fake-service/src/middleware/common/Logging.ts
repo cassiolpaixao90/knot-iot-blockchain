@@ -1,13 +1,13 @@
-import * as winston from 'winston';
+import * as winston from "winston";
 
 export const logger = new winston.Logger();
 
-const env = 'development';
+const env = "development";
 
 // Development Logger
-if (env === 'development') {
+if (env === "development") {
   logger.add(winston.transports.Console, {
-    type: 'verbose',
+    type: "verbose",
     colorize: true,
     prettyPrint: true,
     handleExceptions: true,
@@ -15,6 +15,11 @@ if (env === 'development') {
   });
 }
 
-process.on('unhandledRejection', function (reason, p) {
-  logger.warn('system level exceptions at, Possibly Unhandled Rejection at: Promise ', p, ' reason: ', reason);
+process.on("unhandledRejection", function(reason, p) {
+  logger.warn(
+    "system level exceptions at, Possibly Unhandled Rejection at: Promise ",
+    p,
+    " reason: ",
+    reason
+  );
 });

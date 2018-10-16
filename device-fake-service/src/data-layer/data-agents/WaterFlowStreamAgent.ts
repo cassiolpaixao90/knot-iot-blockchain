@@ -1,4 +1,4 @@
-import WaterflowPub from "middleware/common/WaterflowPub";
+import WaterflowPub from "../../middleware/common/WaterflowPub";
 
 export class WaterFlowDataAgent {
   private waterflowPub: WaterflowPub;
@@ -10,7 +10,7 @@ export class WaterFlowDataAgent {
 
   async createNewWaterFlow(data: any) {
     this.waterFlow = {
-      uuid: data.fromUuid,
+      uuid: data.uuid,
       flowRate: data.message.flowRate
     };
     this.waterflowPub.publish(this.waterFlow);

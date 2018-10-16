@@ -40,15 +40,13 @@ export class Application {
       });
 
     new KnotSocket();
-    // EurekaService.builder().start();
-    // process.on('SIGINT', () => {
-    //   logger.info(`
-    //   --------------------------------------------------
-    //   Stopping KNoT cloud client...
-    //   ------------------------------------------------------
-    //   `);
-    //   EurekaService.builder().stop();
-    //   this.server.close()
-    // });
+    process.on("SIGINT", () => {
+      logger.info(`
+      ------------------------------------------------------
+      Stopping KNoT cloud client...
+      ------------------------------------------------------
+      `);
+      process.exit(1);
+    });
   }
 }

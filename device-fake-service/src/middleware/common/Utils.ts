@@ -1,7 +1,6 @@
-'use strict';
+"use strict";
 
 export class WaterFlowUtils {
-
   private priceLiter: any;
   constructor() {
     this.priceLiter = 0.00461;
@@ -12,7 +11,8 @@ export class WaterFlowUtils {
   }
 
   randomInRange(min, max) {
-    return Math.random() < 0.5 ? ((1 - Math.random()) * (max - min) + min) : (Math.random() * (max - min) + min);
-  };
+    return Math.random() < 0.5
+      ? (1 - Math.random()) * (max - min) + min
+      : Math.random() * (max - min) + min;
+  }
 }
-
