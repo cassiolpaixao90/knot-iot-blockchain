@@ -1,17 +1,14 @@
-# Docker-compose for Graylog
+version: '3'
 
-rabbit1:
-  image: "rabbitmq:3-management"
-  hostname: "rabbit1"
-  environment:
-    RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-    RABBITMQ_DEFAULT_USER: "rabbitmq"
-    RABBITMQ_DEFAULT_PASS: "rabbitmq"
-    RABBITMQ_DEFAULT_VHOST: "/"
-  ports:
-    - "15672:15672"
-    - "5672:5672"
-  labels:
-    NAME: "rabbitmq1"
-  volumes:
-    - "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
+services:
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config

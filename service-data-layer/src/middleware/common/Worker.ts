@@ -12,7 +12,8 @@ export class WorkerWaterFlow {
     var queue = _connection.declareQueue("waterflow-queues");
     queue.bind(exchange);
     queue.activateConsumer(message => {
-      this.waterFlowDataAgent.createNewWaterFlow(message.getContent());
+      const data = JSON.parse(message.getContent());
+      this.waterFlowDataAgent.createNewWaterFlow(data);
     });
   }
 }
