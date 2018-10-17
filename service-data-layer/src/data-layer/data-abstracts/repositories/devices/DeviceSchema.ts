@@ -16,8 +16,7 @@ let DeviceSchema: Schema = new Schema({
   },
   anomalia: {
     type: Boolean
-  },
-  at_date: new Date()
+  }
 });
 
 export { DeviceSchema };

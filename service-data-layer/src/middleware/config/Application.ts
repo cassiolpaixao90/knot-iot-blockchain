@@ -1,17 +1,19 @@
 import { logger } from "../common/Logging";
 import { ExpressConfig } from "./Express";
 import * as config from "config";
-import { KnotAccess } from "../../data-layer/data-agents/KnotDataAgent";
 import * as spdy from "spdy";
 import * as path from "path";
 import * as fs from "fs";
+import { WorkerWaterFlow } from "../common/Worker";
 
 export class Application {
   server: any;
   express: ExpressConfig;
+  workerWaterFlow: WorkerWaterFlow;
 
   constructor() {
     this.express = new ExpressConfig();
+    this.workerWaterFlow = new WorkerWaterFlow();
 
     const certsPath = path.resolve("certs");
     const options = {
@@ -34,5 +36,6 @@ export class Application {
       ------------------------------------------------------
       `);
       });
+    this.workerWaterFlow.subscribe();
   }
 }
