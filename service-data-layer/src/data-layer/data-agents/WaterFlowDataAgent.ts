@@ -3,8 +3,7 @@ import { WaterFlowUtils } from "../../middleware/common/Utils";
 export class WaterFlowDataAgent {
 
   private waterFlowUtils: WaterFlowUtils;
-  private request: Request;
-
+  
   constructor() {
     this.waterFlowUtils = new WaterFlowUtils();
   }
