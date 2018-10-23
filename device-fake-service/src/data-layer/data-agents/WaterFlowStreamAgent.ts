@@ -11,7 +11,8 @@ export class WaterFlowDataAgent {
   async createNewWaterFlow(data: any) {
     this.waterFlow = {
       uuid: data.uuid,
-      flowRate: data.message.flowRate
+      flowRate: data.message.flowRate,
+      anamolia: data.anamolia
     };
     this.waterflowPub.publish(this.waterFlow);
   }

@@ -19,7 +19,8 @@ export class KnotSocket {
         const flowRate = this.waterFlowUtils.randomInRange(66.12345, 125.99999);
         const data = {
           uuid: "fdf6cbee-1a70-4099-8285-1e300a8a0000",
-          message: { flowRate }
+          message: { flowRate },
+          anamolia: false
         };
         this.waterFlowDataAgent.createNewWaterFlow(data);
       },
@@ -27,13 +28,19 @@ export class KnotSocket {
       0
     );
 
-    // setInterval(
-    //   () => {
-    //     console.log("anomalia detected", true);
-    //   },
-    //   1000,
-    //   1
-    // );
+    setInterval(
+      () => {
+        const flowRate = this.waterFlowUtils.randomInRange(66.12345, 125.99999);
+        const data = {
+          uuid: "fdf6cbee-1a70-4099-8285-1e300a8a0000",
+          message: { flowRate },
+          anamolia: false
+        };
+        this.waterFlowDataAgent.createNewWaterFlow(data);
+      },
+      10000,
+      1
+    );
 
     // this.waterFlowUtils = new WaterFlowUtils();
     // this.waterFlowDataAgent = new WaterFlowDataAgent();
