@@ -15,10 +15,10 @@ export class WaterFlowDataAgent {
     const dateTime = new Date().getTime();
     const timestamp = Math.floor(dateTime / 1000);
     const dataT = {
-      userNumber:
+      deviceNumber:
         "dc099880ee7d2b16e956b33cbd8b71d7cf5fdb85a3d14aea434572936a0afbd7",
-      candidateNumber: "11",
-      ellectionName: "iot do bixao",
+      cost: cost,
+      anamolia: data.anamolia,
       address: `${timestamp}${Math.random()}`
     };
 
