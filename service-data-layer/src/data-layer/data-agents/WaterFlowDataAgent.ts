@@ -22,16 +22,17 @@ export class WaterFlowDataAgent {
       address: `${timestamp}${Math.random()}`
     };
 
+    // `
     request.post(
       {
         headers: { "content-type": "application/json" },
-        url: "http://localhost:9005/api/register/",
+        url: "http://localhost:9443/api/register/",
         form: dataT
       },
       function(error, response, body) {
-        // console.log("body", body);
+        console.log("ok");
         // console.log("response", response);
-        console.log("error", error);
+        // console.log("error", error);
       }
     );
   }

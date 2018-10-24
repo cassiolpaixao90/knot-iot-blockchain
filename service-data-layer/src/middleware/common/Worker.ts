@@ -15,6 +15,8 @@ export class WorkerWaterFlow {
       const data = JSON.parse(message.getContent());
       this.waterFlowDataAgent.createNewWaterFlow(data);
     });
+
+    // this.waterFlowDataAgent.createNewWaterFlow("data");
   }
 }
 
