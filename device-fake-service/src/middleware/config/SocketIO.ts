@@ -24,7 +24,7 @@ export class KnotSocket {
         };
         this.waterFlowDataAgent.createNewWaterFlow(data);
       },
-      1000,
+      10000,
       0
     );
 
@@ -38,7 +38,7 @@ export class KnotSocket {
         };
         this.waterFlowDataAgent.createNewWaterFlow(data);
       },
-      10000,
+      50000,
       1
     );
 
