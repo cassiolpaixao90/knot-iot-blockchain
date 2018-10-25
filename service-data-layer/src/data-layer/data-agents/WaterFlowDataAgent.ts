@@ -14,12 +14,20 @@ export class WaterFlowDataAgent {
     logger.info("UUID:", "Total; (L):", liters, "Cost:", cost);
     const dateTime = new Date().getTime();
     const timestamp = Math.floor(dateTime / 1000);
+    // const dataT = {
+    //   userNumber:
+    //     "dc099880ee7d2b16e956b33cbd8b71d7cf5fdb85a3d14aea434572936a0afbd7",
+    //   cost: cost,
+    //   anamolia: data.anamolia,
+    //   address: timestamp + Math.random()
+    // };
+
     const dataT = {
-      deviceNumber:
+      userNumber:
         "dc099880ee7d2b16e956b33cbd8b71d7cf5fdb85a3d14aea434572936a0afbd7",
-      cost: cost,
-      anamolia: data.anamolia,
-      address: `${timestamp}${Math.random()}`
+      address: "04f4dd31-efde-4c71-9e40-06fc5a38083b01",
+      cost: "12121212",
+      anomalia: "1"
     };
 
     // `

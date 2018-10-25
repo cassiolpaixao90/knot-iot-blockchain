@@ -20,7 +20,7 @@ export class KnotSocket {
         const data = {
           uuid: "fdf6cbee-1a70-4099-8285-1e300a8a0000",
           message: { flowRate },
-          anamolia: false
+          anamolia: "0"
         };
         this.waterFlowDataAgent.createNewWaterFlow(data);
       },
@@ -34,7 +34,7 @@ export class KnotSocket {
         const data = {
           uuid: "fdf6cbee-1a70-4099-8285-1e300a8a0000",
           message: { flowRate },
-          anamolia: false
+          anamolia: "1"
         };
         this.waterFlowDataAgent.createNewWaterFlow(data);
       },
