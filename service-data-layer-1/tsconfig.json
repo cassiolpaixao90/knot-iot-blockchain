@@ -7,7 +7,7 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "es2017", "dom" ],
+    "lib": ["es2017", "dom"],
     "sourceMap": true,
     "pretty": true,
     "allowUnreachableCode": true,
@@ -24,11 +24,7 @@
     "baseUrl": "src/",
     "listFiles": false
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["src/**/*", "../service-data-layer/src/worker.js"],
+  "exclude": ["node_modules"],
   "compileOnSave": false
 }

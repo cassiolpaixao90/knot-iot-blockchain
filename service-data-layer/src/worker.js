@@ -5,7 +5,6 @@ class DeviceWorker {
     this.url = 'amqp://guest:guest@localhost';
     this.amqpConn = null;
     this.pubChannel = null;
-    this.offlinePubQueue = [];
     this.exchange = 'my-delay-exchange';
     this.init();
   }
@@ -33,45 +32,13 @@ class DeviceWorker {
 
         console.log('[AMQP] connected');
         this.amqpConn = conn;
-        this.whenConnected();
+        this.subscribe();
       }
     );
   }
 
-  whenConnected() {
-    this.startPublisher();
-    this.startWorker();
-  }
-
-  startPublisher() {
-    this.amqpConn.createConfirmChannel((err, ch) => {
-      if (this.closeOnErr(err)) return;
-      ch.on('error', err => {
-        console.error('[AMQP] channel error', err.message);
-      });
-      ch.on('close', () => {
-        console.log('[AMQP] channel closed');
-      });
-      this.pubChannel = ch;
-      this.pubChannel.assertExchange(this.exchange, 'x-delayed-message', {
-        autoDelete: false,
-        durable: true,
-        passive: true,
-        arguments: { 'x-delayed-type': 'direct' }
-      });
-
-      this.pubChannel.bindQueue('jobs', this.exchange, 'jobs');
-
-      while (true) {
-        const m = this.offlinePubQueue.shift();
-        if (!m) break;
-        publish(m[0], m[1], m[2]);
-      }
-    });
-  }
-
   // A worker that acks messages only if processed succesfully
-  startWorker() {
+  subscribe() {
     this.amqpConn.createChannel((err, ch) => {
       if (this.closeOnErr(err)) return;
       ch.on('error', err => {
@@ -84,30 +51,26 @@ class DeviceWorker {
       ch.prefetch(10);
       ch.assertQueue('jobs', { durable: true }, (err, _ok) => {
         if (this.closeOnErr(err)) return;
-        console.info('Worker is started');
+        ch.consume('jobs', processMsg, { noAck: false });
+        console.info('subscribe is started');
       });
-    });
-  }
 
-  publish(routingKey, content, delay) {
-    try {
-      this.pubChannel.publish(
-        this.exchange,
-        routingKey,
-        content,
-        { headers: { 'x-delay': delay } },
-        (err, ok) => {
-          if (err) {
-            console.error('[AMQP] publish', err);
-            this.offlinePubQueue.push([this.exchange, routingKey, content]);
-            this.pubChannel.connection.close();
+      function processMsg(msg) {
+        work(msg, ok => {
+          try {
+            if (ok) ch.ack(msg);
+            else ch.reject(msg, true);
+          } catch (e) {
+            this.closeOnErr(e);
           }
-        }
-      );
-    } catch (e) {
-      console.error('[AMQP] failed', e.message);
-      this.offlinePubQueue.push([routingKey, content, delay]);
-    }
+        });
+      }
+
+      function work(msg, cb) {
+        console.log(JSON.parse(msg.content.toString()));
+        cb(true);
+      }
+    });
   }
 
   closeOnErr(err) {

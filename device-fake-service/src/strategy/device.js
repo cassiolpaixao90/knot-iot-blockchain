@@ -11,8 +11,7 @@ class DeviceStrategy {
         cost: flowRate.valueOf(),
         anamolia: '0'
       };
-      console.log(data);
-      deviceWorker.publish('jobs', new Buffer(data), 10000);
+      deviceWorker.publish('jobs', new Buffer(JSON.stringify(data)), 10000);
     }, 10000);
   }
 
