@@ -21,7 +21,7 @@
       }
     ],
     "no-const-assign": "warn",
-    "no-this-before-super": "warn",
+    "class-methods-use-this": "error",
     "no-undef": "warn",
     "no-unreachable": "warn",
     "constructor-super": "warn",
