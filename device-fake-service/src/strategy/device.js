@@ -12,7 +12,7 @@ class DeviceStrategy {
         anamolia: '0'
       };
       console.log(data);
-      deviceWorker.publish('jobs', new Buffer(`work sent: ${flowRate}`), 10000);
+      deviceWorker.publish('jobs', new Buffer(data), 10000);
     }, 10000);
   }
 

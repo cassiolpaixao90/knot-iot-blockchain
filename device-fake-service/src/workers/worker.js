@@ -7,24 +7,28 @@ class DeviceWorker {
     this.pubChannel = null;
     this.offlinePubQueue = [];
     this.exchange = 'my-delay-exchange';
-    this.start();
+    this.init();
   }
 
-  start() {
+  init() {
     amqp.connect(
       this.url,
       (err, conn) => {
+        if (err) {
+          console.error('[AMQP]', err.message);
+          return setTimeout(this.start(), 1000);
+        }
+
         conn.on('error', err => {
           if (err.message !== 'Connection closing') {
-            console.log("'[AMQP - ERROR] reconnecting'", err);
-
-            // if (this.closeOnErr(err)) return this.start();
+            console.error('[AMQP] conn error', err.message);
           }
         });
 
         conn.on('close', () => {
+          console.error('[AMQP] conn error', err.message);
           console.error('[AMQP - CLOSE] reconnecting');
-          // return this.start();
+          return setTimeout(this.start(), 1000);
         });
 
         console.log('[AMQP] connected');
@@ -41,7 +45,7 @@ class DeviceWorker {
 
   startPublisher() {
     this.amqpConn.createConfirmChannel((err, ch) => {
-      // if (this.this.closeOnErr(err)) return;
+      if (this.closeOnErr(err)) return;
       ch.on('error', err => {
         console.error('[AMQP] channel error', err.message);
       });
@@ -49,14 +53,13 @@ class DeviceWorker {
         console.log('[AMQP] channel closed');
       });
       this.pubChannel = ch;
-      // assert the exchange: 'my-delay-exchange' to be a x-delayed-message,
       this.pubChannel.assertExchange(this.exchange, 'x-delayed-message', {
         autoDelete: false,
         durable: true,
         passive: true,
         arguments: { 'x-delayed-type': 'direct' }
       });
-      // Bind the queue: "jobs" to the exchnage: "my-delay-exchange" with the binding key "jobs"
+
       this.pubChannel.bindQueue('jobs', this.exchange, 'jobs');
 
       while (true) {
@@ -93,7 +96,7 @@ class DeviceWorker {
         if (ok) ch.ack(msg);
         else ch.reject(msg, true);
       } catch (e) {
-        this.this.closeOnErr(e);
+        this.closeOnErr(e);
       }
     });
   }
@@ -104,9 +107,6 @@ class DeviceWorker {
   }
 
   publish(routingKey, content, delay) {
-    console.log('routingKey', routingKey);
-    console.log('content', content);
-    console.log('delay', delay);
     try {
       this.pubChannel.publish(
         this.exchange,
