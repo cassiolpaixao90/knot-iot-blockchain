@@ -70,7 +70,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 ## LICENSE
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/cassiolpaixao90/node-microservice-blockchain-iot-knot/blob/master/device-fake-service/LICENSE) file for details
 
 [build-badge]: https://img.shields.io/buildkite/3826789cf8890b426057e6fe1c4e683bdf04fa24d498885489/master.svg
 [build]: ""
