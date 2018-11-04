@@ -1,6 +1,6 @@
-# Device Fake IoT
+# Service Data Layer
 
-Get random value device fake iot
+Get data layer to send blockchain
 
 [![Build Status][build-badge]][build]
 [![Code Coverage][coverage-badge]][coverage]
@@ -12,11 +12,11 @@ Get random value device fake iot
 
 ## The problem
 
-Simulate device fake without having the physical thing to test the results
+Get value from device fake to data layer, after send service blockchain
 
 ## This solution
 
-This module simulates random data fake IoT.
+This module get value data fake IoT, over service RabbitMQ.
 
 ## Pré-requisites
 
@@ -40,7 +40,7 @@ git clone https://github.com/cassiolpaixao90/node-microservice-blockchain-iot-kn
 **2. Install dependence the app using NPM or YARN**
 
 ```bash
-cd device-fake-iot
+cd service-data-layer
 npm install
 ```
 
@@ -53,7 +53,7 @@ npm start
 ## Usage
 
 ```javascript
-deviceUtil.randomInRange(66.12345, 125.99999);
+this.url = <url_amqp>;
 ```
 
 ## Contributors
