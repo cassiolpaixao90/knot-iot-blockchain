@@ -1,4 +1,5 @@
 const deviceUtil = require('../utils/device-utils');
+const deviceWorker = require('../workers/worker');
 
 class DeviceStrategy {
   static water() {
@@ -11,6 +12,7 @@ class DeviceStrategy {
         anamolia: '0'
       };
       console.log(data);
+      deviceWorker.publish('jobs', new Buffer(`work sent: ${flowRate}`), 10000);
     }, 10000);
   }
 

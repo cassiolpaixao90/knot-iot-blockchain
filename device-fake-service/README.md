@@ -53,6 +53,7 @@ npm start
 ## Usage
 
 ```javascript
+deviceUtil.randomInRange(66.12345, 125.99999);
 ```
 
 ## Contributors

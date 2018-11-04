@@ -4,7 +4,7 @@
   "description": "Simulate Device Fake IoT",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel security-check open:src lint",
+    "start": "npm-run-all --parallel security-check open:src",
     "open:src": "node src/index.js",
     "format": "prettier-eslint --write src/**/*.js",
     "precommit": "lint-staged",
@@ -43,5 +43,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "amqplib": "^0.5.2"
   }
 }
