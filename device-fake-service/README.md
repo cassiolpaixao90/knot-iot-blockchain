@@ -18,13 +18,36 @@ Simulate device fake without having the physical thing to test the results
 
 This module simulates random data fake IoT.
 
+## Pré-requisites
+
+- NodeJS 8.1.x
+- NPM or YARN
+- RabbitMQ
+
 ## Installation
 
 This module is distributed via [npm][npm] which is bundled with [node][node] and should
 be installed as one of your project's dependencies:
 
+### Steps to setup
+
+**1. Clone the application**
+
+```bash
+git clone https://github.com/cassiolpaixao90/node-microservice-blockchain-iot-knot.git
 ```
+
+**2. Install dependence the app using NPM or YARN**
+
+```bash
+cd device-fake-iot
 npm install
+```
+
+**3. Run Application**
+
+```bash
+npm start
 ```
 
 ## Usage
@@ -44,7 +67,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 
-| [<img src="https://avatars3.githubusercontent.com/u/16453864?s=400&v=4" width="100px;"/><br /><sub>Cássio Paixão</sub>]()<br />[💻]() [📖]() [⚠️]() ✅ |
+| [<img src="https://avatars3.githubusercontent.com/u/16453864?s=400&v=4" width="100px;"/><br /><sub>Cássio Paixão</sub>]()<br />[💻]() [📖]() [⚠️]() |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------:
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
