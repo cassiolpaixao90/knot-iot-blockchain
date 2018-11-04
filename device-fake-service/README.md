@@ -55,12 +55,6 @@ npm start
 ```javascript
 ```
 
-## Other Solutions
-
-This is actually part of a course instructing people how to create open source
-projects. So as a result there are dozens of copies of this module on npm. Good luck
-finding the best :-)
-
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
@@ -85,12 +79,10 @@ MIT
 [downloads-badge]: ""
 [npm-stat]: ""
 [license-badge]: https://img.shields.io/github/license/mashape/apistatus.svg
-[license]: ""
+[license]: https://github.com/cassiolpaixao90/node-microservice-blockchain-iot-knot/blob/master/device-fake-service/LICENSE
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
 [coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
-[coc]: ""
+[coc]: https://github.com/cassiolpaixao90/node-microservice-blockchain-iot-knot/blob/master/device-fake-service/CODE_OF_CONDUCT.md
 [umd]: https://github.com/umdjs/umd
 [npmcdn]: https://npmcdn.com
-[npmcdn-link]: https://npmcdn.com/starwars-names@1.6.0/dist/index.umd.js
-[npmcdn-min-link]: https://npmcdn.com/starwars-names@1.6.0/dist/index.umd.min.js
