@@ -1,0 +1,23 @@
+{
+  "projectName": "device-fake-iot",
+  "projectOwner": "cassiolpaixao90",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "cassiolpaixao90",
+      "name": "Cássio Paixão",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16453864?s=400&v=4",
+      "profile": "",
+      "contributions": [
+        "code",
+        "doc",
+        "infra",
+        "test"
+      ]
+    }
+  ]
+}
