@@ -45,6 +45,7 @@
     ]
   },
   "dependencies": {
-    "amqplib": "^0.5.2"
+    "amqplib": "^0.5.2",
+    "axios": "^0.18.0"
   }
 }

@@ -1,4 +1,5 @@
 const amqp = require('amqplib/callback_api');
+const service = require('./service');
 
 class DeviceWorker {
   constructor() {
@@ -67,8 +68,8 @@ class DeviceWorker {
       }
 
       function work(msg, cb) {
-        console.log(JSON.parse(msg.content.toString()));
-        cb(true);
+        const data = JSON.parse(msg.content.toString());
+        service.sendDataBlockchain(data, cb);
       }
     });
   }

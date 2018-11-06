@@ -1,8 +1,0 @@
-{
-  "express": {
-    "port": 9091,
-    "debug": 5858,
-    "host": "waterflow-rabbitmq"
-  },
-  "loglevel": "info"
-}

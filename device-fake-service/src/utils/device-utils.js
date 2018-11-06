@@ -13,6 +13,11 @@ class WaterFlowUtils {
       ? (1 - Math.random()) * (max - min) + min
       : Math.random() * (max - min) + min;
   }
+
+  dateTimes() {
+    const d = new Date();
+    return d.getTime();
+  }
 }
 
 module.exports = new WaterFlowUtils();
