@@ -4,3 +4,4 @@ coverage/
 dist/
 .opt-*
 .idea/
+package-lock.json
