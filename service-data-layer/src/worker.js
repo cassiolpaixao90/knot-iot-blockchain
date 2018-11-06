@@ -69,7 +69,8 @@ class DeviceWorker {
 
       function work(msg, cb) {
         const data = JSON.parse(msg.content.toString());
-        service.sendDataBlockchain(data, cb);
+        service.sendDataBlockchain(data);
+        cb(true);
       }
     });
   }

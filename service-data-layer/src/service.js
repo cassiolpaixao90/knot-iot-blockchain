@@ -3,12 +3,18 @@ const axios = require('axios');
 class Service {
   constructor() {}
 
-  sendDataBlockchain(data, cb) {
+  sendDataBlockchain(data) {
+    const payload = {
+      userNumber: data.userNumber,
+      address: data.address,
+      cost: data.cost,
+      anomalia: data.anomalia
+    };
+
     axios
-      .post('http://localhost:9343/api/register/', data)
+      .post('http://localhost:9443/api/register/', payload)
       .then(response => {
         console.log(response.data);
-        cb(true);
       })
       .catch(error => {
         console.log(error);
